@@ -1,16 +1,29 @@
 package com.stackroute;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
-public class chessPattern {
-    public static void printPattern(String chessArr[][]){
-        int i, j;
-        for (i=0; i<8; i++) {
-            for (j = 0; j < 16; j++) {
-                System.out.print(chessArr[i][j] + " ");
-            }
-            System.out.println();
-        }
+import static org.junit.Assert.*;
+
+public class ChessPatternTest {
+    String chessArr[][] = new String[8][16];
+    String white = "WW";
+    String black = "BB";
+//    makePattern(chessArr, white, black);
+//    printPattern(chessArr);
+    ChessPattern obj;
+    @Before
+    public void setUp() throws Exception {
+         obj = new ChessPattern();
     }
-    public static void makePattern(String chessArr[][], String white, String black){
+
+    @After
+    public void tearDown() throws Exception {
+        obj = null;
+    }
+    @Test
+    public void testPattern() {
+        String chess[][] = new String[8][16];
         int i, j, flag=0;
         for (i=0; i<8; i++){
             for (j=0; j<16; j++){
@@ -32,13 +45,8 @@ public class chessPattern {
                     flag = 0;
                 }
             }
+
         }
-    }
-    public static void main(String args[]){
-        String chessArr[][] = new String[8][16];
-        String white = "WW";
-        String black = "BB";
-        makePattern(chessArr, white, black);
-        printPattern(chessArr);
+        assertEquals(chessArr,obj.makePattern(chessArr,"WW","BB"));
     }
 }
